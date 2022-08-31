@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+<body>
+<script>
+    function solution(a, b, c) {
+        let answer;
+        const longest = Math.max(a, b, c);
+        const sumOfShorts = a + b + c - longest;
+        answer = sumOfShorts > longest;
+        return answer;
+    }
+
+    console.log(solution(13, 33, 17));
+</script>
+</body>
+</html>

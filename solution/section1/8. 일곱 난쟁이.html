@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = arr;
+        const sum = arr.reduce((prev, curr) => prev + curr, 0);
+        const diff = sum - 100;
+        const target = [];
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] + arr[j] == diff) {
+              target.push(...[i, j]);
+            }
+          }
+        }
+        answer = answer
+          .map((x, idx) => {
+            if (target.includes(idx)) {
+              return -1;
+            }
+            return x;
+          })
+          .filter((x) => x >= 0);
+        return answer;
+      }
+
+      let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

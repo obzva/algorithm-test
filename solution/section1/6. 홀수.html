@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = [];
+
+        const odds = arr.filter((number) => {
+          return number % 2 == 1;
+        });
+
+        const sum = odds.reduce((prev, curr) => prev + curr, 0);
+        answer.push(sum);
+
+        const min = Math.min(...odds);
+        answer.push(min);
+
+        return answer;
+      }
+
+      arr = [12, 77, 38, 41, 53, 92, 85];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
