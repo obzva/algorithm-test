@@ -8,7 +8,7 @@
       function solution(day, arr) {
         let answer = 0;
 
-        const violators = arr.filter((car) => Number(String(car)[1]) == day);
+        const violators = arr.filter((car) => Number(String(car)[1]) === day);
 
         answer = violators.length;
 

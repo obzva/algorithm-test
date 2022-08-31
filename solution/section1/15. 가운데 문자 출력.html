@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        const len = s.length;
+        const isOdd = len % 2 === 1;
+        if (isOdd) {
+          const idx = Math.floor(len / 2);
+          return s.slice(idx, idx + 1);
+        }
+        const idx = len / 2 - 1;
+        return s.slice(idx, idx + 2);
+      }
+      console.log(solution("study"));
+    </script>
+  </body>
+</html>
