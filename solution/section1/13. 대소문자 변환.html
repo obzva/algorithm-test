@@ -10,9 +10,7 @@
         for (let i = 0; i < s.length; i++) {
           if (s[i] === s[i].toUpperCase()) {
             answer += s[i].toLowerCase();
-            continue;
-          }
-          answer += s[i].toUpperCase();
+          } else answer += s[i].toUpperCase();
         }
         return answer;
       }

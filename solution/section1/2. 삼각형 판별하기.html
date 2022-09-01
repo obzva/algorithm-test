@@ -1,19 +1,33 @@
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>출력결과</title>
-</head>
-<body>
-<script>
-    function solution(a, b, c) {
+  </head>
+  <body>
+    <script>
+      function solution(a, b, c) {
         let answer;
         const longest = Math.max(a, b, c);
         const sumOfShorts = a + b + c - longest;
         answer = sumOfShorts > longest;
         return answer;
-    }
+        /**
+         * let answer = "YES", max;
+         * let sum = a + b + c;
+         *
+         * 가장 긴 변 구하기
+         * if (a > b) max = a;
+         * else max = b;
+         * if (c > max) max = c;
+         *
+         * 짧은 막대 두개의 길이의 합이 긴 막대의 길이의 합보다 작거나 같으면 NO
+         * if ((sum - max) <= max) answer = "NO"
+         *
+         * return answer;
+         */
+      }
 
-    console.log(solution(13, 33, 17));
-</script>
-</body>
+      console.log(solution(13, 33, 17));
+    </script>
+  </body>
 </html>

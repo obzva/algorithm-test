@@ -9,7 +9,7 @@
         let answer = [];
 
         const odds = arr.filter((number) => {
-          return number % 2 == 1;
+          return number % 2 === 1;
         });
 
         const sum = odds.reduce((prev, curr) => prev + curr, 0);
@@ -19,6 +19,19 @@
         answer.push(min);
 
         return answer;
+
+        /**
+         * let answer = [], sum = 0, min = Number.MAX_SAFE_INTEGER;
+         * for ( let i = 0; i < arr.length; i ++) {
+         *     if (x % 2 === 1) {
+         *         sum += x;
+         *         if (x < min) min = x;
+         *     }
+         * }
+         * answer.push(sum);
+         * answer.push(min);
+         * return answer;
+         */
       }
 
       arr = [12, 77, 38, 41, 53, 92, 85];

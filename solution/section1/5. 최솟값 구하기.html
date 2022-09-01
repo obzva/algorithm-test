@@ -6,9 +6,16 @@
   <body>
     <script>
       function solution(arr) {
-        let answer,
-          min = Number.MAX_SAFE_INTEGER;
+        let answer;
         answer = Math.min(...arr);
+
+        // let answer = Number.MAX_SAFE_INTEGER; // 안정적인 비교를 위해 아주 큰 수로 초기값을 설정
+        // for (let i = 0; i < arr.length; i++) {
+        //   if (answer > arr[i]) {
+        //     answer = arr[i];
+        //   }
+        // }
+
         return answer;
       }
 

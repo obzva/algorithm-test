@@ -6,11 +6,8 @@
   <body>
     <script>
       function solution(s) {
-        let answer;
-
-        answer = s.filter((str, idx) => s.indexOf(str) === idx);
-
-        return answer;
+        return s.filter((str, idx) => s.indexOf(str) === idx); // 배열 내 모든 요소에 대해 callback함수를 호출한 뒤,
+        // true가 리턴되는 요소만 모아 새로운 배열을 return 함
       }
       let str = ["good", "time", "good", "time", "student"];
       console.log(solution(str));
