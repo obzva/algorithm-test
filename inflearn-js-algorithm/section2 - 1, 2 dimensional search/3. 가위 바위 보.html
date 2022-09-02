@@ -6,26 +6,39 @@
   <body>
     <script>
       function solution(a, b) {
+        // let answer = "";
+        // const num = a.length;
+        // for (let i = 0; i < num; i++) {
+        //   switch (a[i]) {
+        //     case 1:
+        //       if (b[i] === 1) answer += "D";
+        //       else if (b[i] === 2) answer += "B";
+        //       else answer += "A";
+        //       break;
+        //     case 2:
+        //       if (b[i] === 2) answer += "D";
+        //       else if (b[i] === 3) answer += "B";
+        //       else answer += "A";
+        //       break;
+        //     case 3:
+        //       if (b[i] === 3) answer += "D";
+        //       else if (b[i] === 1) answer += "B";
+        //       else answer += "A";
+        //       break;
+        //   }
+        // }
+        // return answer;
+
         let answer = "";
-        const num = a.length;
-        for (let i = 0; i < num; i++) {
-          switch (a[i]) {
-            case 1:
-              if (b[i] === 1) answer += "D";
-              else if (b[i] === 2) answer += "B";
-              else answer += "A";
-              break;
-            case 2:
-              if (b[i] === 2) answer += "D";
-              else if (b[i] === 3) answer += "B";
-              else answer += "A";
-              break;
-            case 3:
-              if (b[i] === 3) answer += "D";
-              else if (b[i] === 1) answer += "B";
-              else answer += "A";
-              break;
-          }
+        const n = a.length;
+        for (let i = 0; i < n; i++) {
+          const condition =
+            (a[i] === 1 && b[i] === 3) ||
+            (a[i] === 2 && b[i] === 1) ||
+            (a[i] === 3 && b[i] === 2);
+          if (a[i] === b[i]) answer += "D";
+          else if (condition) answer += "A";
+          else answer += "B";
         }
         return answer;
       }
