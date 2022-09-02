@@ -6,51 +6,52 @@
   <body>
     <script>
       function solution(arr) {
-        // let answer = 0;
-        // const newArr = [[0, 0, 0, 0, 0, 0, 0]];
-        // for (let i = 0; i < 5; i++) {
-        //   newArr.push([0, ...arr[i], 0]);
-        // }
-        // newArr.push([0, 0, 0, 0, 0, 0, 0]);
-        // for (let i = 1; i < 6; i++) {
-        //   for (let j = 1; j < 6; j++) {
-        //     const condition =
-        //       newArr[i][j] > newArr[i - 1][j] &&
-        //       newArr[i][j] > newArr[i + 1][j] &&
-        //       newArr[i][j] > newArr[i][j - 1] &&
-        //       newArr[i][j] > newArr[i][j + 1];
-        //     if (condition) answer++;
-        //   }
-        // }
-        //
-        // return answer;
-
         let answer = 0;
-        let n = arr.length;
-        let dx = [-1, 0, 1, 0];
-        let dy = [0, 1, 0, -1];
+        const n = arr.length;
+        const newArr = [Array.from({ length: n + 2 }, () => 0)];
         for (let i = 0; i < n; i++) {
-          for (let j = 0; j < n; j++) {
-            let flag = 1;
-            for (let k = 0; k < 4; k++) {
-              let nx = i + dx[k];
-              let ny = j + dy[k];
-              if (
-                nx >= 0 &&
-                nx < n &&
-                ny >= 0 &&
-                ny < n &&
-                arr[nx][ny] >= arr[i][j]
-              ) {
-                flag = 0;
-                break;
-              }
-            }
-            if (flag) answer++;
+          newArr.push([0, ...arr[i], 0]);
+        }
+        newArr.push(Array.from({ length: n + 2 }, () => 0));
+        for (let i = 1; i < n + 1; i++) {
+          for (let j = 1; j < n + 1; j++) {
+            const condition =
+              newArr[i][j] > newArr[i - 1][j] &&
+              newArr[i][j] > newArr[i + 1][j] &&
+              newArr[i][j] > newArr[i][j - 1] &&
+              newArr[i][j] > newArr[i][j + 1];
+            if (condition) answer++;
           }
         }
 
         return answer;
+
+        // let answer = 0;
+        // let n = arr.length;
+        // let dx = [-1, 0, 1, 0];
+        // let dy = [0, 1, 0, -1];
+        // for (let i = 0; i < n; i++) {
+        //   for (let j = 0; j < n; j++) {
+        //     let flag = 1;
+        //     for (let k = 0; k < 4; k++) {
+        //       let nx = i + dx[k];
+        //       let ny = j + dy[k];
+        //       if (
+        //         nx >= 0 &&
+        //         nx < n &&
+        //         ny >= 0 &&
+        //         ny < n &&
+        //         arr[nx][ny] >= arr[i][j]
+        //       ) {
+        //         flag = 0;
+        //         break;
+        //       }
+        //     }
+        //     if (flag) answer++;
+        //   }
+        // }
+        //
+        // return answer;
       }
 
       let arr = [
