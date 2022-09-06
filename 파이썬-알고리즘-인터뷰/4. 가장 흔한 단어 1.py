@@ -1,6 +1,9 @@
 """
 리스트 컴프리헨션, Counter 객체 사용
 """
+import collections
+import re
+from typing import *
 
 
 class Solution:

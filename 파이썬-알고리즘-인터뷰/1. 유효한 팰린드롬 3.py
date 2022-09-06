@@ -1,6 +1,7 @@
 """
 슬라이싱 활용
 """
+import re
 
 
 class Solution:

@@ -1,3 +1,6 @@
+from typing import *
+
+
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         dict = {}

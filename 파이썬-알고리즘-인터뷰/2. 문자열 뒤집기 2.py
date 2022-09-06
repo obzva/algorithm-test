@@ -1,6 +1,7 @@
 """
 Pythonic way: reverse() 사용
 """
+from typing import *
 
 
 class Solution:

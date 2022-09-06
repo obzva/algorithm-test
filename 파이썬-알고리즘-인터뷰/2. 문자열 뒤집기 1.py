@@ -1,6 +1,7 @@
 """
 투 포인터를 이용한 스왑
 """
+from typing import *
 
 
 class Solution:

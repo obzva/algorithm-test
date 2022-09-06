@@ -1,6 +1,8 @@
 """
 collections.defaultdict(list) 사용
 """
+import collections
+from typing import *
 
 
 class Solution:
