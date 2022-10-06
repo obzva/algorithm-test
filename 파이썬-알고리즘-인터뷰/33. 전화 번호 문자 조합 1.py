@@ -18,9 +18,8 @@ class Solution:
                 result.append(path)
                 return
 
-            for i in range(index, len(digits)):
-                for j in dic[digits[i]]:
-                    dfs(i + 1, path + j)
+            for j in dic[digits[index]]:
+                dfs(index + 1, path + j)
 
         dfs(0, '')
         return result
