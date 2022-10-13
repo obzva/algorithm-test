@@ -65,18 +65,37 @@ class Solution:
         # return ans
 
         # RESETTING BOUNDARIES OPTIMIZED
+        # m, n = len(matrix), len(matrix[0])
+        # i, j = 0, -1
+        # direction = 1
+        # ans = []
+        # while m * n > 0:
+        #     for _ in range(n):
+        #         j += direction
+        #         ans.append(matrix[i][j])
+        #     m -= 1
+        #     for _ in range(m):
+        #         i += direction
+        #         ans.append(matrix[i][j])
+        #     n -= 1
+        #     direction *= -1
+        # return ans
+
+        # MARK AS READ
         m, n = len(matrix), len(matrix[0])
-        i, j = 0, -1
-        direction = 1
-        ans = []
-        while m * n > 0:
-            for _ in range(n):
-                j += direction
+        di = [0, 1, 0, -1]
+        dj = [1, 0, -1, 0]
+        direction = 0
+        i = j = 0
+        ans = [matrix[i][j]]
+        matrix[0][0] = '#'
+        while len(ans) < m * n:
+            ni = i + di[direction]
+            nj = j + dj[direction]
+            if not (0 <= ni < m and 0 <= nj < n) or matrix[ni][nj] == '#':
+                direction = (direction + 1) % 4
+            else:
+                i, j = ni, nj
                 ans.append(matrix[i][j])
-            m -= 1
-            for _ in range(m):
-                i += direction
-                ans.append(matrix[i][j])
-            n -= 1
-            direction *= -1
+                matrix[i][j] = '#'
         return ans
