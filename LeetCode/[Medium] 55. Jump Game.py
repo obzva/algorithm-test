@@ -72,7 +72,7 @@ class Solution:
         #         last_position = i
         # return last_position == 0
 
-        # ANNONYMOUS SLICK ONE
+        # GOING FORWARD
         furthest = i = 0
         while i <= furthest:
             furthest = max(furthest, i + nums[i])
