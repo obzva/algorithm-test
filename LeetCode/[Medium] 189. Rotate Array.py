@@ -65,10 +65,9 @@ class Solution:
             current_idx = start
             prev = nums[current_idx]
             while True:
-                next_idx = (current_idx + k) % n
-                prev, nums[next_idx] = nums[next_idx], prev
+                current_idx = (current_idx + k) % n
+                prev, nums[current_idx] = nums[current_idx], prev
                 count += 1
-                if next_idx == start:
+                if current_idx == start:
                     break
-                current_idx = next_idx
             start += 1
