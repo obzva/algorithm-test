@@ -140,8 +140,8 @@ class AVLTree:
             if self._get_bal(node.right) <= 0:
                 return self._l_rotate(node)
             else:
-                node.right = self._l_rotate(node.right)
-                return self._r_rotate(node)
+                node.right = self._r_rotate(node.right)
+                return self._l_rotate(node)
         return node
 
     def insert(self, x: int):
