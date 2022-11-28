@@ -1,12 +1,8 @@
-/**
- * @param a: array
- * @returns {*[]}
- */
-const permute = (a) => {
+const permute = (inputArray, size) => {
   const result = [];
   const prev = [];
   const dfs = (arr) => {
-    if (arr.length === 0) result.push([...prev]);
+    if (arr.length === inputArray.length - size) result.push([...prev]);
     else {
       for (let i = 0; i < arr.length; i++) {
         const newArr = [...arr];
@@ -17,8 +13,6 @@ const permute = (a) => {
       }
     }
   };
-  dfs(a);
+  dfs(inputArray, size);
   return result;
 };
-
-console.log(permute([1, 2, 3]));

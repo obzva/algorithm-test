@@ -1,21 +1,15 @@
-/**
- *
- * @param a: array
- * @param n: the length of a combination
- * @return [[]]: combinations
- */
-const combine = (a, n) => {
+const combine = (inputArray, size) => {
   const result = [];
-  const dfs = (combination, start, k) => {
-    if (k === 0) result.push([...combination]);
+  const dfs = (prev, start, count) => {
+    if (count === 0) result.push([...prev]);
     else {
-      for (let i = start; i < a.length; i++) {
-        combination.push(a[i]);
-        dfs(combination, i + 1, k - 1);
-        combination.pop();
+      for (let i = start; i < inputArray.length; i++) {
+        prev.push(inputArray[i]);
+        dfs(prev, i + 1, count - 1);
+        prev.pop();
       }
     }
   };
-  dfs([], 0, n);
+  dfs([], 0, size);
   return result;
 };
