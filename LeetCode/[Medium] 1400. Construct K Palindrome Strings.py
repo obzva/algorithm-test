@@ -1,8 +1,11 @@
+from typing import Collection
+
+
 class Solution:
     def canConstruct(self, s: str, k: int) -> bool:
         if len(s) == k:
             return True
-        cnt = collections.Counter(s)
+        cnt = Collection.Counter(s)
         number_of_odds = 0
         for char in cnt:
             if cnt[char] % 2 == 1:
