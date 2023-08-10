@@ -4,7 +4,7 @@ from functools import cache
 #     def longestStrChain(self, words: List[str]) -> int:
 #         s_words = sorted(words, key=len)
 #         n = len(s_words)
-
+        
 #         def check(short: str, long: str) -> bool:
 #             if len(short) + 1 != len(long):
 #                 return False
@@ -16,7 +16,7 @@ from functools import cache
 #                         return True
 #                 j += 1
 #             return False
-
+        
 #         ans = 1
 #         memo = [1] * len(s_words)
 
@@ -41,32 +41,59 @@ from functools import cache
 #         ## memo -> O(N)
 #         ### O(N)
 
+# class Solution:
+#     def longestStrChain(self, words: List[str]) -> int:
+#         words_set = set(words)
+        
+#         @cache
+#         def dfs(word: str) -> int:
+#             res = 1
+#             for i in range(len(word)):
+#                 new_word = word[:i] + word[i + 1:]
+#                 if new_word in words_set:
+#                     curr = 1 + dfs(new_word)
+#                     res = max(res, curr)
+#             return res
+
+#         ans = 0
+#         for word in words:
+#             ans = max(ans, dfs(word))
+        
+#         return ans
+    
+#     # Time complexity
+#     ## constructing set -> O(N)
+#     ## iteration -> O(N)
+#     ## dfs -> O(L^2) (for word length L, recursion depth O(L) at most and iteration in dfs O(L))
+#     ### O(N*L^2)
+
+#     # Space complexity
+#     ## set -> O(N)
 
 class Solution:
     def longestStrChain(self, words: List[str]) -> int:
-        words_set = set(words)
+        memo = {}
+        s_words = sorted(words, key=len)
+        ans = 1
 
-        @cache
-        def dfs(word: str) -> int:
-            res = 1
+        for word in s_words:
+            curr = 1
             for i in range(len(word)):
-                new_word = word[:i] + word[i + 1 :]
-                if new_word in words_set:
-                    curr = 1 + dfs(new_word)
-                    res = max(res, curr)
-            return res
-
-        ans = 0
-        for word in words:
-            ans = max(ans, dfs(word))
-
+                new_word = word[:i] + word[i+1:]
+                prev = memo.get(new_word, 0)
+                curr = max(curr, prev + 1)
+            memo[word] = curr
+            ans = max(ans, curr)
+        
         return ans
 
     # Time complexity
-    ## constructing set -> O(N)
+    ## sorting -> O(NlogN)
     ## iteration -> O(N)
-    ## dfs -> O(L^2) (for word length L, recursion depth O(L) at most and iteration in dfs O(L))
-    ### O(N*L^2)
+    ## iteration for word -> O(L) for word length L
+    ## slicing -> O(L)
+    ### O(N*L^2 + NlogN)
 
     # Space complexity
-    ## set -> O(N)
+    ## memo -> O(N)
+    ### O(N)
