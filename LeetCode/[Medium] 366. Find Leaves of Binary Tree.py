@@ -49,3 +49,12 @@ class Solution:
 
         dfs(root)
         return list(heights.values())
+
+        # Time complexity
+        ## If there are total N nodes, we dfs() two times for each nodes -> O(N)
+        ## constructing list for result -> O(N) at worst
+        ### O(N)
+
+        # Space complexity
+        ## heights hashmap -> O(N) at worst
+        ### O(N)
