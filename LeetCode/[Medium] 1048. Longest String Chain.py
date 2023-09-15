@@ -4,7 +4,7 @@ from functools import cache
 #     def longestStrChain(self, words: List[str]) -> int:
 #         s_words = sorted(words, key=len)
 #         n = len(s_words)
-        
+
 #         def check(short: str, long: str) -> bool:
 #             if len(short) + 1 != len(long):
 #                 return False
@@ -16,7 +16,7 @@ from functools import cache
 #                         return True
 #                 j += 1
 #             return False
-        
+
 #         ans = 1
 #         memo = [1] * len(s_words)
 
@@ -44,7 +44,7 @@ from functools import cache
 # class Solution:
 #     def longestStrChain(self, words: List[str]) -> int:
 #         words_set = set(words)
-        
+
 #         @cache
 #         def dfs(word: str) -> int:
 #             res = 1
@@ -58,9 +58,9 @@ from functools import cache
 #         ans = 0
 #         for word in words:
 #             ans = max(ans, dfs(word))
-        
+
 #         return ans
-    
+
 #     # Time complexity
 #     ## constructing set -> O(N)
 #     ## iteration -> O(N)
@@ -70,30 +70,73 @@ from functools import cache
 #     # Space complexity
 #     ## set -> O(N)
 
+# class Solution:
+#     def longestStrChain(self, words: List[str]) -> int:
+#         memo = {}
+#         s_words = sorted(words, key=len)
+#         ans = 1
+
+#         for word in s_words:
+#             curr = 1
+#             for i in range(len(word)):
+#                 new_word = word[:i] + word[i+1:]
+#                 prev = memo.get(new_word, 0)
+#                 curr = max(curr, prev + 1)
+#             memo[word] = curr
+#             ans = max(ans, curr)
+
+#         return ans
+
+#     # Time complexity
+#     ## sorting -> O(NlogN)
+#     ## iteration -> O(N)
+#     ## iteration for word -> O(L) for word length L
+#     ## slicing -> O(L)
+#     ### O(N*L^2 + NlogN)
+
+#     # Space complexity
+#     ## memo -> O(N)
+#     ### O(N)
+
+
 class Solution:
     def longestStrChain(self, words: List[str]) -> int:
-        memo = {}
-        s_words = sorted(words, key=len)
-        ans = 1
+        words.sort(key=lambda x: len(x))
+        n = len(words)
 
-        for word in s_words:
-            curr = 1
-            for i in range(len(word)):
-                new_word = word[:i] + word[i+1:]
-                prev = memo.get(new_word, 0)
-                curr = max(curr, prev + 1)
-            memo[word] = curr
-            ans = max(ans, curr)
-        
+        def a_is_predecessor_of_b(a: str, b: str) -> bool:
+            p, q = len(a), len(b)
+            i, j = 0, 0
+            while i < p and j < q:
+                if a[i] == b[j]:
+                    i += 1
+                j += 1
+            return i == p
+
+        memo = [1] * n
+        ans = 0
+
+        for i in range(n - 1, -1, -1):
+            j = i + 1
+            while j < n:
+                if len(words[i]) + 1 < len(words[j]):
+                    break
+                if len(words[i]) + 1 == len(words[j]) and a_is_predecessor_of_b(
+                    words[i], words[j]
+                ):
+                    memo[i] = max(memo[i], memo[j] + 1)
+                j += 1
+
+            ans = max(ans, memo[i])
+
         return ans
 
-    # Time complexity
-    ## sorting -> O(NlogN)
-    ## iteration -> O(N)
-    ## iteration for word -> O(L) for word length L
-    ## slicing -> O(L)
-    ### O(N*L^2 + NlogN)
+        # Time complexity
+        ## sort -> O(NlogN)
+        ## a_is_predecessor_of_b -> O(M) where M is the length of word_b, M <= 16
+        ## iteration -> O(N^2)
+        ### O(N^2 * M)
 
-    # Space complexity
-    ## memo -> O(N)
-    ### O(N)
+        # Space complexity
+        ## memo -> O(N)
+        ### O(N)
