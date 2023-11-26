@@ -1,0 +1,30 @@
+from typing import *
+from bisect import bisect_left
+
+class Solution:
+    def minAbsDifference(self, nums: List[int], goal: int) -> int:
+        possible_sums1, possible_sums2 = set(), set()
+
+        def make_possible_sum(index, array, acc, target_set):
+            if index == len(array):
+                target_set.add(acc)
+                return
+            make_possible_sum(index + 1, array, acc + array[index], target_set)
+            make_possible_sum(index + 1, array, acc, target_set)
+
+        make_possible_sum(0, nums[:len(nums) // 2], 0, possible_sums1)
+        make_possible_sum(0, nums[len(nums) // 2:], 0, possible_sums2)
+
+        possible_sums_list2 = sorted(possible_sums2)
+
+        ans = abs(goal)
+
+        for sum1 in possible_sums1:
+            remain = goal - sum1
+            i = bisect_left(possible_sums_list2, remain)
+            if i < len(possible_sums_list2):
+                ans = min(ans, abs(goal - sum1 - possible_sums_list2[i]))
+            if i > 0:
+                ans = min(ans, abs(goal - sum1 - possible_sums_list2[i - 1]))
+
+        return ans
